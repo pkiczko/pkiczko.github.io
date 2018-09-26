@@ -1,0 +1,216 @@
+<html>
+<head>
+
+<style>
+body {
+  background-color: black;
+}
+</style>
+</head>
+<body>
+  <script>
+
+  /* 12. Functions */
+  pCreate('12. Functions \n \n');
+  function spaceCreate(n) {
+  let space = document.createElement('div');
+  space.style.height = n;
+  space.content = " ";
+  document.body.appendChild(space);
+}
+  function divCreate(input) {
+  let div = document.createElement('div');
+              div.textContent = input;
+              div.style.backgroundColor="darkblue";
+              div.style.color = "white";
+              div.style.style = "tahoma";
+              div.style.fontSize = "x-large";
+              div.style.fontWeight = '800';
+              div.style.marginBottom = '5px';
+              div.style.padding = '5px';
+              document.body.appendChild(div);
+            }
+
+  function pCreate(input) {
+  let p = document.createElement('p');
+              p.textContent = input;
+              p.style.backgroundColor="black";
+              p.style.color = "white";
+              p.style.style = "tahoma";
+              p.style.fontSize = "medium";
+              p.style.fontWeight = '700';
+              p.style.margin = '10px';
+              document.body.appendChild(p);
+            }
+
+
+function spanCreate(input) {
+let span = document.createElement('span');
+            span.textContent = input;
+            span.style.backgroundColor="green";
+            span.style.border= "2px darkred solid";
+            span.style.color = "white";
+            span.style.style = "tahoma";
+            span.style.fontSize = "x-large";
+            span.style.fontWeight = '700';
+            span.style.margin = '5px';
+            span.style.padding = '5px';
+            document.body.appendChild(span);
+          }
+  const firstName = 'Paul';
+  const lastName = 'Kiczko';
+  function fullName(fName, lName) {
+    divCreate(`${fName} ${lName}`)
+  }
+
+  // a. and b. printing text
+pCreate('a. & b. Printing text:');
+  fullName(firstName, lastName);
+
+  //c. adding numbers
+pCreate('c. Simple number addition:');
+  function addNumbers(a, b) {
+    divCreate(`${a} + ${b} = ${a+b}`);
+  }
+  addNumbers(2, 2);
+
+  //d. array printing
+pCreate('d. Printing out an array:');
+  function printArray(array) {
+    array.forEach(element =>{
+      spanCreate(element);
+    });
+  }
+  const itCompanies = ['Facebook', 'Google', 'Microsoft', 'Apple', 'IBM', 'Oracle', 'Amazon'];
+  printArray(itCompanies);
+//spaceCreate('20px');
+//e. reverse of an Array
+pCreate('e. Printing the array in reverse:');
+for (i=itCompanies.length; i>0; i--) {
+  spanCreate(itCompanies[i-1]);
+}
+//spaceCreate('20px');
+//f. capitalized array
+pCreate('f. Capitalizing the array elements:');
+function capitalizeArray(array) {
+  array.forEach(element =>{
+    spanCreate(element.toUpperCase());
+  });
+}
+capitalizeArray(itCompanies);
+//spaceCreate('20px');
+//g. removing from Array
+pCreate('g. Removing Microsoft from the array and printing it out:');
+function removeItem(array, what) {
+  array = array.filter(item => item !== what);
+  array.forEach(element =>{
+    spanCreate(element);
+  });}
+removeItem(itCompanies, 'Microsoft');
+
+//h. adding an item to an Array
+pCreate('h. Adding an item Casablanca to an array:')
+function addItem(array, what) {
+  array.push(what);
+  array.forEach(element =>{
+    spanCreate(element);
+  });}
+  addItem(itCompanies, 'Casablanca');
+  //i. Sum of numbers in a range
+  pCreate('i. Sum of numbers in a range:')
+  function sumOfNumbers(n) {
+    divCreate(`Sum of all numbers from 1 to ${n} is ${(n*(n+1))/2}`);
+  }
+sumOfNumbers(3);
+//j. Sum of odd numbers in a range
+pCreate('j. Sum of odd numbers in a range:')
+function sumOfOdds(n) {
+
+  divCreate(`Sum of all odd numbers from 1 to ${n} is ${Math.pow(Math.ceil(n/2), 2)}`);
+  //((n/2).ceil())*((n/2).ceil())
+}
+sumOfOdds(13);
+sumOfOdds(6);
+
+//k. Sum of even numbers in a range
+pCreate('k. Sum of even numbers in a range:')
+function sumOfEven(n) {
+
+  divCreate(`Sum of all even numbers from 1 to ${n} is ${(Math.floor(n/2))*(Math.ceil((n+1)/2))}`);
+  //((n/2).ceil())*((n/2).ceil())
+}
+sumOfEven(7);
+sumOfEven(10);
+
+//l. Count of even and odd numbers from 0 to given number
+pCreate('l. Count of even and odd numbers from 0 to given number:')
+function evensAndOdds(n) {
+  divCreate(`Count of even numbers from 0 to ${n}: ${Math.floor(n/2)}`);
+  divCreate(`Count of odd numbers from 0 to ${n}: ${Math.ceil(n/2)}`);
+}
+evensAndOdds(3);
+evensAndOdds(10);
+
+//m. Random hex color number generator
+pCreate('m. Random hex color number generator:')
+
+function randomHexaNumberGenerator() {
+  let decaNumberSize = Math.pow(16,6); //creating a number which is going to be converted to 6 digit hexa number
+  let number = Math.floor((Math.random()*decaNumberSize) + 1); //now we have the number, only need to convert it to hexa
+
+  divCreate(`#${number.toString(16)}`);
+}
+randomHexaNumberGenerator();
+
+//n. & o. ID generator
+pCreate('n. & o. ID generator:')
+function userIdGenerator() {
+  let param1 = prompt('How many characters ID should have?', '5');
+  let param2 = prompt('How many IDs to generate?', '1');
+  //let totallyRandomID = '';
+
+  for (i=0; i<param2; i++) {
+      let totallyRandomID = '';
+      let randomID = Math.random().toString(36).substr(2, param1);
+      //console.log(randomID);
+      let letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+      [...randomID].forEach(item => {if (letters.includes(item)) {
+        //console.log(item);
+        let z = Math.floor(Math.random()*2);
+        if (z === 0) {item = item.toUpperCase();
+      }
+
+      }
+      totallyRandomID+=item;
+
+    });
+    //console.log(totallyRandomID);
+      //.map(letter => {let z = Math.floor(Math.random()*2); if (z === 0) {letter.toUpperCase()}};);
+      divCreate(`${totallyRandomID}`);
+  };
+}
+userIdGenerator();
+
+//p. RGB color generator
+pCreate('p. RGB color generator:')
+function rgbColorGenerator() {
+  let colors = [];
+  for (i=0; i<3; i++) {
+    let randomColor =  Math.floor(Math.random()*256);
+    colors.push(randomColor);
+  }
+divCreate(`rgb(${colors})`);
+}
+rgbColorGenerator();
+
+spaceCreate('20px');
+
+
+
+
+
+  </script>
+
+</body>
+</html>

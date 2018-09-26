@@ -1,0 +1,199 @@
+<html>
+<head>
+
+<style>
+body {
+  background-color: black;
+}
+</style>
+<script src="lodash.js"></script>
+</head>
+<body>
+  <script>
+  let someArray = [];
+  let interval;
+  let menu = document.createElement('div');
+              menu.innerHTML = 'Countries';
+              //menu.textContent = input;
+              menu.style.backgroundColor= 'deeppink';
+              menu.style.color = "white";
+              menu.style.width = '80%';
+              menu.style.padding = '20px 0';
+              menu.style.borderRadius = '20px';
+              menu.style.style = "tahoma";
+              menu.style.fontSize = "x-large";
+              menu.style.fontWeight = '800';
+              //menu.style.marginBottom = '50px';
+              menu.style.margin = '40px 10%';
+              menu.style.textAlign = 'center';
+              //menu.style.marginLeft = 'auto';
+              //menu.style.aligns = 'center';
+
+  let input = document.createElement('input');
+              input.id = 'inputField';
+              input.style.width = '60%';
+              input.style.margin = '0 20%';
+              input.type = "text";
+              input.placeholder='Insert an integer number...';
+              input.style.marginTop= '15px';
+              input.style.marginBottom= '15px';
+              document.body.appendChild(menu);
+              menu.appendChild(input);
+  let generate = document.createElement('button');
+              generate.classList.add("genButton");
+              generate.innerHTML='Search (starting)';
+              generate.style.width = '10em';
+  let stop = document.createElement('button');
+              stop.classList.add("stopButton");
+              stop.innerHTML='Search (any)';
+              stop.style.marginLeft = '20px';
+              stop.style.width = '10em';
+  stop.addEventListener('click', () => {
+
+        if (input.value) {
+          let toRemove = document.querySelectorAll('.divs');
+          for (var i = 0; i < toRemove.length; i++)
+    {
+    article.removeChild(toRemove[i]);
+    }
+    for (i=0; i<countries.length; i++){
+      if (countries[i].length !== 1) {
+        let kingdoms = countries[i].split(' ');
+        for (j=0; j<kingdoms.length; j++){
+          if (kingdoms[j].toLowerCase() === input.value.toLowerCase()) {
+            a = randomHexaNumberGenerator();
+            divCreate(countries[i], a);
+          }
+        }
+      }
+    if (countries[i].toLowerCase() === input.value.toLowerCase()) {
+    //console.log('found');
+    someArray.push(countries[i]);
+    a = randomHexaNumberGenerator();
+    divCreate(countries[i], a);
+    }
+
+  }
+    }
+
+
+
+
+  });
+              menu.appendChild(generate);
+              menu.appendChild(stop);
+  generate.addEventListener('click',() => {
+      if (input.value) {
+        let toRemove = document.querySelectorAll('.divs');
+        for (var i = 0; i < toRemove.length; i++)
+{
+  article.removeChild(toRemove[i]);
+}
+for (i=0; i<countries.length; i++){
+  if (countries[i].length !== 1) { let country = countries[i].split(' ')[0];
+  if (country.toLowerCase() === input.value.toLowerCase()) {
+    //console.log('found');
+    someArray.push(countries[i]);
+    a = randomHexaNumberGenerator();
+    divCreate(countries[i], a);
+  }}
+else if (countries[i].toLowerCase() === input.value.toLowerCase()) {
+  //console.log('found');
+  someArray.push(countries[i]);
+  a = randomHexaNumberGenerator();
+  divCreate(countries[i], a);
+}}
+}
+  })
+
+
+
+
+let article = document.createElement("div");
+
+            document.body.appendChild(article);
+
+  function divCreate(input, color) {
+  let div = document.createElement('div');
+
+              div.classList.add("divs");
+              div.textContent = input;
+              div.style.backgroundColor= color;
+              div.style.textAlign = 'center';
+              div.style.width = '80%';
+              div.style.borderRadius = '5px';
+              div.style.margin = '0 10%';
+              div.style.color = "white";
+              div.style.style = "tahoma";
+              div.style.fontSize = "x-large";
+              div.style.fontWeight = '800';
+              div.style.marginBottom = '0px';
+              div.style.padding = '5px';
+              article.appendChild(div);
+            }
+
+  function pCreate(input) {
+  let p = document.createElement('p');
+              p.textContent = input;
+              p.style.backgroundColor="black";
+              p.style.color = "white";
+              p.style.style = "tahoma";
+              p.style.fontSize = "medium";
+              p.style.fontWeight = '700';
+              p.style.margin = '10px';
+              document.body.appendChild(p);
+            }
+
+
+function spanCreate(input) {
+let span = document.createElement('span');
+            span.textContent = input;
+            span.style.backgroundColor="green";
+            span.style.border= "2px darkred solid";
+            span.style.color = "white";
+            span.style.style = "tahoma";
+            span.style.fontSize = "medium";
+            span.style.fontWeight = '700';
+            span.style.marginTop = '15px';
+            span.style.marginBottom = '15px';
+
+            span.style.padding = '0px';
+            document.body.appendChild(span);
+          }
+
+
+
+  const countries= ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas"
+	,"Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","British Virgin Islands"
+	,"Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica"
+	,"Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea"
+	,"Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana"
+	,"Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India"
+	,"Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia"
+	,"Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania"
+	,"Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia"
+	,"New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal"
+	,"Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre and Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles"
+	,"Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts and Nevis","St Lucia","St Vincent","St. Lucia","Sudan"
+	,"Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad and Tobago","Tunisia"
+	,"Turkey","Turkmenistan","Turks and Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay"
+	,"Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+  function randomHexaNumberGenerator() {
+    let decaNumberSize = Math.pow(16,6); //creating a number which is going to be converted to 6 digit hexa number
+    let number = Math.floor((Math.random()*decaNumberSize) + 1).toString(16); //now we have the number, only need to convert it to hexa
+    return number;
+    //divCreate(`#${number}`);
+  }
+for (i=0; i<countries.length; i++) {
+  let a = randomHexaNumberGenerator();
+  divCreate(countries[i].toUpperCase(), a);
+}
+
+
+
+
+
+  </script>
+
+</body>
+</html>

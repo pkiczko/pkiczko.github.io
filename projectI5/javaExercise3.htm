@@ -1,0 +1,237 @@
+<html>
+<head>
+
+<style>
+body {
+  background-color: black;
+}
+</style>
+<script src="lodash.js"></script>
+</head>
+<body>
+  <script>
+
+
+  function spaceCreate(n) {
+  let space = document.createElement('div');
+  space.style.height = n;
+  space.content = " ";
+  document.body.appendChild(space);
+}
+  function divCreate(input) {
+  let div = document.createElement('div');
+              div.textContent = input;
+              div.style.backgroundColor="darkblue";
+              div.style.color = "white";
+              div.style.style = "tahoma";
+              div.style.fontSize = "x-large";
+              div.style.fontWeight = '800';
+              div.style.marginBottom = '5px';
+              div.style.padding = '5px';
+              document.body.appendChild(div);
+            }
+
+  function pCreate(input) {
+  let p = document.createElement('p');
+              p.textContent = input;
+              p.style.backgroundColor="black";
+              p.style.color = "white";
+              p.style.style = "tahoma";
+              p.style.fontSize = "medium";
+              p.style.fontWeight = '700';
+              p.style.margin = '10px';
+              document.body.appendChild(p);
+            }
+
+
+function spanCreate(input) {
+let span = document.createElement('span');
+            span.textContent = input;
+            span.style.backgroundColor="green";
+            span.style.border= "2px darkred solid";
+            span.style.color = "white";
+            span.style.style = "tahoma";
+            span.style.fontSize = "medium";
+            span.style.fontWeight = '700';
+            span.style.marginTop = '15px';
+            span.style.marginBottom = '15px';
+
+            span.style.padding = '0px';
+            document.body.appendChild(span);
+          }
+
+//pCreate('c. Simple number addition:');
+//divCreate(`${a} + ${b} = ${a+b}`)
+
+  pCreate('13. Objects \n \n');
+let personAccount = {
+  firstName: 'Nash',
+  lastName: 'Bridges',
+  incomes: [100,300,523,512,912],
+  expenses: [12,1,1000],
+  totalIncomes(){
+    return this.incomes.reduce((a, b) => a + b, 0);
+  },
+  totalExpenses(){
+    return this.expenses.reduce((a, b) => a + b, 0);
+  },
+  accountInfo(){
+    return `Account owner: ${this.firstName + ' ' + this.lastName}`;
+  },
+  addIncome(n){
+    this.incomes.push(n);
+    return `Money added to the account: ${n}`;
+  },
+  addExpense(n){
+    this.expenses.push(n);
+  return `Money withdrawn from the account: ${n}`;
+  },
+  accountBalance(){
+    return `Account balance ${this.totalIncomes() - this.totalExpenses()}`;
+  }
+};
+divCreate(`Total income: ${personAccount.totalIncomes()}`);
+divCreate(`Total expenses: ${personAccount.totalExpenses()}`);
+divCreate(personAccount.accountInfo());
+divCreate(personAccount.accountBalance());
+divCreate(personAccount.addIncome(1000));
+divCreate(personAccount.addExpense(1));
+divCreate(personAccount.accountBalance());
+
+
+
+  pCreate('14. Date Object \n \n');
+
+  function displayDateTime() {
+    let date = new Date();
+
+    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let numbers = [];
+    for (i = 1; i<13;i++) {numbers.push(i)};
+    let monthNumbers = months.reduce((obj, k, i) => ({...obj, [k]: numbers[i] }), {});
+    //console.log(monthNumbers);
+
+    return divCreate(`${date.getDate()}/${date.getMonth() +1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`);
+  }
+displayDateTime();
+
+  pCreate('15. Regular expressions \n \n');
+  const string = 'He earns 4000 euro from salary per month, 10000 euro annual bonus, 5500 euro online courses per month.';
+  let stringArray1 = string.replace('.','');
+  stringArray1 = stringArray1.split(',');
+
+  let monthly = ['month', 'monthly'];
+  let yearly = ['annual', 'annum', 'year', 'yearly'];
+  let salary = {total: 0,
+                numbers: {},
+                month:[],
+                year: []};
+  for (i=0; i<stringArray1.length; i++) {
+    let n = i;
+    let scattered = stringArray1[i].split(' ');//split to basic components to later compare with predefined words
+    scattered.forEach(element => {
+      if (!isNaN(element) && element !== ''){salary.numbers[n] = parseInt(element)}
+      else if (monthly.includes(element)) {salary.month.push(i)}
+      else if (yearly.includes(element)) {salary.year.push(i)}
+  });
+  }
+  let monthlyPay = [];
+  let yearlyPay = [];
+  for (i=0; i<salary.month.length; i++) {
+    console.log(`checking: ${salary.numbers[salary.month[i]]}`);
+    monthlyPay.push(salary.numbers[salary.month[i]]);
+    salary.total += salary.numbers[salary.month[i]] * 12;
+  }
+  for (i=0; i<salary.year.length; i++) {
+    yearlyPay.push(salary.numbers[salary.year[i]]);
+    salary.total += salary.numbers[salary.year[i]];
+  }
+  console.log(salary);
+  divCreate(`${string}`);
+  divCreate(`Monthly incomes are: ${monthlyPay} `);
+  divCreate(`Yearly incomes are: ${yearlyPay} `);
+  divCreate(`Total incomes in a year are: ${salary.total}`);
+
+  pCreate('16. Functional programming \n \n');
+function getStringLists(arr) {
+  if (arr.constructor !== Array) {
+    console.log(arr);
+    divCreate(`Input error! ${arr} is not an array!`);}
+  else {
+    let myArry = [];
+    arr.forEach(element => {if (typeof(element) === 'string'){myArry.push(element)}})
+    console.log(myArry);
+      return myArry;
+  }
+  }
+  let Arry=['Potter', 1, 5, 'Samson', 'medusa'];
+
+  pCreate('a. Parsing through array keeping only strings:');
+  divCreate(`Input array is [${Arry}]`);
+  divCreate(`Output array [${getStringLists(Arry)}]`);
+
+  pCreate('b. List of countries:');
+
+  const countries= ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas"
+	,"Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","British Virgin Islands"
+	,"Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica"
+	,"Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea"
+	,"Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana"
+	,"Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India"
+	,"Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia"
+	,"Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania"
+	,"Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia"
+	,"New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal"
+	,"Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre and Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles"
+	,"Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts and Nevis","St Lucia","St Vincent","St. Lucia","Sudan"
+	,"Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad and Tobago","Tunisia"
+	,"Turkey","Turkmenistan","Turks and Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay"
+	,"Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+for (i=0; i<countries.length; i++){
+  spanCreate(countries[i]);
+};
+
+
+  pCreate('c. List of first 10 countries:');
+  for (i=0; i<10; i++){
+    spanCreate(countries[i]);
+  };
+  pCreate('d. List of last 10 countries:');
+  for (i=countries.length; i>countries.length-11; i--){
+    spanCreate(countries[i]);
+  };
+  pCreate('e. Most common starting letters for countries:');
+  let countryResults = {};
+
+  countries.forEach(element => {
+    if (!countryResults[element[0]]) {countryResults[element[0]]=1}
+    else countryResults[element[0]]++;
+  }
+  );
+  console.log(_.keys(countryResults));
+  divCreate('Results:');
+  let biggest = 0;
+  let z = 0;
+  for (i=0; i<_.size(countryResults); i++){
+    spanCreate(_.keys(countryResults)[i] + ' : ' + _.values(countryResults)[i]);
+    if (_.values(countryResults)[i] > biggest) {biggest = _.values(countryResults)[i];
+      z = i;
+    }
+  };
+  pCreate('The most common letter is ' + _.keys(countryResults)[z] + ' : ' + _.values(countryResults)[z]);
+    _.forOwn(countryResults, function(value, key) {spanCreate(key + ' : ' + value);});
+  pCreate('17. DOM \n \n');
+  
+
+
+
+spaceCreate('20px');
+
+
+
+
+
+  </script>
+
+</body>
+</html>
