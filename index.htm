@@ -133,7 +133,7 @@ function loadJSON(callback) {
 
     let json = new XMLHttpRequest();
         json.overrideMimeType("application/json");
-    json.open('GET', './all.json', false); // Replace 'my_data' with the path to your file
+    json.open('GET', 'all.json', false); // Replace 'my_data' with the path to your file
     json.onreadystatechange = function () {
           if (json.readyState == 4 && json.status == "200") {
 
