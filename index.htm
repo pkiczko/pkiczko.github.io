@@ -1,84 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
+
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>HTML5 Form</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        input:valid {
-            border:2px solid green;
-
-        }
-        input:invalid{
-            border:2px solid red;
-        }
-
-
-    </style>
-
-
+<title>PK portfolio</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-    <form>
-        <label for="firstname">First Name:</label>
-        <input id="firstname" type="text" name="firstname" placeholder="First name" value="John" required  pattern = "[a-zA-Z]{3,5}"/> <br />
-        <label for="lastname" >Last Name</label>
-        <input id="lastname" type="text" name="lastname" placeholder="Last name" value="Smith"> <br />
-        <label for="user-value">Enter a number:</label>
-        <input id="user-value" type="number" name="user-value" min="5" max="100" /> <br />
-        <label>Date started:</label>
-        <input type="date"/> <br />
-
-        <label for="female">Female</label><input id="female" type="radio" name="gender" value="Female"/>
-        <label for="male">Male</label><input id="male" type="radio" name="gender" value="Male"/>
-        <label for="others">Others</label><input id="others" type="radio"name="gender"  value="Other" /> <br />
-        <label for="skills">Skills</label> <br />
-        <input type="checkbox" value="HTML"><label>HTML</label> <br />
-        <input type="checkbox" value="CSS"><label>CSS</label><br />
-        <input type="checkbox" value="JavaScript"><label>JavaScript</label> <br />
-        <p>Choose one skill:</p>
-        <select>
-            <option value="html">HTML</option>
-            <option value="css">CSS</option>
-            <option value="javascript">JavaScript</option>
-            <option value="react">React</option>
-            <option value="redux">Redux</option>
-            <option value="node">Node</option>
-        </select>
-        <br />
-        <label for="cv">Attach your cv here:</label> <br />
-        <input id="cv" type="file" multiple> <br />
-        <label>Favorite color:</label>
-        <input type="color"> <br />
-        <label>Your Email:</label>
-        <input type="email"> <br />
-        <label for="password">Password</label>
-        <input type="password" /> <br />
-        <label for="message">Leave a message here:</label><br />
-        <textarea id='123' rows="10" cols="50">Leave a message</textarea> <br />
-        <input type="reset">
-        <!-- <button type="submit">Submit</button> -->
-        <input  type="submit" value="Submit" />
-        <button id='buttonz'>test</button>
-        <script>
-        const addButton = document.querySelector('#buttonz');
-//console.log(addButton)
 
 
+<header>
+<div class="row">
+  <div class="left"><p><img src="img_girl.jpg" alt="me" style="max-width:100%;height:auto;"></p></div>
+  <div class="main"><h2>Pawel Kiczko</h2></div>
+  <div class="right"><p><img src="integrify_i.png" id='logo' alt="me" style="max-width:100%;height:auto;"></p></div>
+</div>
+<hr>
+<nav>
 
-addButton.addEventListener('click',function(e){
-              let div = document.createElement('div');
-              div.textContent = document.getElementById('123').value;
-              console.log(document.getElementById('123').value);
-              div.style.backgroundColor = 'lightgreen';
-              div.style.color = "blue"
-              document.body.appendChild(div);
-        //console.log(document.getElementById('123').value);
-              e.preventDefault();
-      });
-        </script>
-    </form>
+<a href="index.htm" class='button4'>Home</a>
+<a href="skill.htm" class="button4">Skill</a>
+<a href="hobbies.htm" class="button4">Hobby</a>
+<a href="projects.htm" class="button4">Projects</a>
+<!--<a href="#" class="button4">Resources</a> -->
+
+
+</nav>
+
+</header>
+<!--<section>
+    <article>
+    <h2 class='indent'>Welcome!</h2>
+
+  </article>
+</section> -->
+
+<section>
+  <h4>
+Feel free to browse through the menu categories. For a good start I will show a picture I took at a lake this summer.
+</h4>
+</section>
+<section>
+  <img id="myImg" src="./photos/lake1.jpg" alt="Lake Päijänne, Finland">
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <span class="close">×</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
+
+  <script>
+  // Get the modal
+  var modal = document.getElementById('myModal');
+
+  // Get the image and insert it inside the modal - use its "alt" text as a caption
+  var img = document.getElementById('myImg');
+  var modalImg = document.getElementById("img01");
+  var captionText = document.getElementById("caption");
+  img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+  }
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+  </script>
+</section>
+<section>
+<h4>Below there are some links to social media. Be sure to check out my GitHub!</h4>
+</section>
+
+<footer>
+  <h4>Integrify Academy</h4>
+  <hr>
+
+<a href="#" class="fa fa-facebook"> </a>
+<a href="#" class='fa fa-twitter'></a>
+<a href="#" class='fa fa-linkedin'></a>
+<a href="https://github.com/pkiczko/" class='fa fa-github'></a>
+
+</footer>
 
 </body>
 </html>
