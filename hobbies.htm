@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<title>PK portfolio</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+
+<header>
+<div class="row">
+  <div class="left"><p><img src="img_girl.jpg" alt="me" style="max-width:100%;height:auto;"></p></div>
+  <div class="main"><h2>Pawel Kiczko</h2></div>
+  <div class="right"><p><img src="integrify_i.png" id='logo' alt="me" style="max-width:100%;height:auto;"></p></div>
+</div>
+<hr>
+<nav>
+
+<a href="index.htm" class='button4'>Home</a>
+<a href="skill.htm" class="button4">Skill</a>
+<a href="hobbies.htm" class="button4">Hobby</a>
+<a href="projects.htm" class="button4">Projects</a>
+<!--<a href="#" class="button4">Resources</a> -->
+
+
+</nav>
+
+</header>
+<!--<section>
+    <article>
+    <h2 class='indent'>Welcome!</h2>
+
+  </article>
+</section> -->
+
+<section>
+  <h2> Fishing </h2>
+</section>
+<section>
+  I do like to fish. While fishing sometimes I take some pictures.
+  BEHOLD!
+</section>
+  <section>
+  <img class="mySlides demo" src="./photos/lake1.jpg" style="width:100%">
+  <img class="mySlides demo" src="./photos/lake2.jpg" style="width:100%">
+  <img class="mySlides demo" src="./photos/fish1.jpg" style="width:100%">
+  <img class="mySlides demo" src="./photos/river1.jpg" style="width:100%">
+<img class="mySlides demo" src="./photos/river2.jpg" style="width:100%">
+</section>
+  <section>
+    <button style="margin-right: 0; width: 15%" class="button4" onclick="plusDivs(-1)">❮ </button>
+    <button  class="button4" style="margin-left: 0; width: 15%" onclick="plusDivs(1)"> ❯</button>
+ </section>
+ <div id="myModal" class="modal">
+   <span class="close">×</span>
+   <img class="modal-content" id="img01">
+   <div id="caption"></div>
+ </div>
+
+ <script>
+
+var slideIndex = 1;
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace("red", "");
+  }
+  x[slideIndex-1].style.display = "block";
+  //dots[slideIndex-1].className += "red";
+}
+
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+
+showDivs(slideIndex);
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementsByClassName("mySlides");
+var modalImg = document.getElementById("img01");
+//var captionText = document.getElementById("caption");
+console.log(img);
+
+img[0].onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    //captionText.innerHTML = this.alt;
+}
+img[1].onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    //captionText.innerHTML = this.alt;
+}
+img[2].onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    //captionText.innerHTML = this.alt;
+}
+img[3].onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    //captionText.innerHTML = this.alt;
+}
+img[4].onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    //captionText.innerHTML = this.alt;
+}
+//work, but in a wasteful way
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+</script>
+
+</section>
+
+<footer>
+  <h4>Integrify Academy</h4>
+  <hr>
+
+<a href="#" class="fa fa-facebook"> </a>
+<a href="#" class='fa fa-twitter'></a>
+<a href="#" class='fa fa-linkedin'></a>
+<a href="https://github.com/pkiczko/" class='fa fa-github'></a>
+
+</footer>
+
+</body>
+</html>

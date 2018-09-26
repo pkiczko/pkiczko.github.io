@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<title>PK portfolio</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+
+<header>
+<div class="row">
+  <div class="left"><p><img src="img_girl.jpg" alt="me" style="max-width:100%;height:auto;"></p></div>
+  <div class="main"><h2>Pawel Kiczko</h2></div>
+  <div class="right"><p><img src="integrify_i.png" id='logo' alt="me" style="max-width:100%;height:auto;"></p></div>
+</div>
+<hr>
+<nav>
+
+<a href="portfolio.htm" class='button4'>Home</a>
+<a href="skill.htm" class="button4">Skill</a>
+<a href="hobbies.htm" class="button4">Hobby</a>
+<a href="projects.htm" class="button4">Projects</a>
+<!--<a href="#" class="button4">Resources</a> -->
+
+
+</nav>
+
+</header>
+<!--<section>
+    <article>
+    <h2 class='indent'>Welcome!</h2>
+
+  </article>
+</section> -->
+
+<section>
+  <h4>
+Feel free to browse through the menu categories. For a good start I will show a picture I took at a lake this summer.
+</h4>
+</section>
+<section>
+  <img id="myImg" src="./photos/lake1.jpg" alt="Lake Päijänne, Finland">
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <span class="close">×</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
+
+  <script>
+  // Get the modal
+  var modal = document.getElementById('myModal');
+
+  // Get the image and insert it inside the modal - use its "alt" text as a caption
+  var img = document.getElementById('myImg');
+  var modalImg = document.getElementById("img01");
+  var captionText = document.getElementById("caption");
+  img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+  }
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+  </script>
+</section>
+<section>
+<h4>Below there are some links to social media. Be sure to check out my GitHub!</h4>
+</section>
+
+<footer>
+  <h4>Integrify Academy</h4>
+  <hr>
+
+<a href="#" class="fa fa-facebook"> </a>
+<a href="#" class='fa fa-twitter'></a>
+<a href="#" class='fa fa-linkedin'></a>
+<a href="https://github.com/pkiczko/" class='fa fa-github'></a>
+
+</footer>
+
+</body>
+</html>

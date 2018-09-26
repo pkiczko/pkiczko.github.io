@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .chart-wrapper {
+            height:100%;
+            background: lightgoldenrodyellow;
+        }
+        div{
+            height:40px;
+            border:1px solid lightgreen;
+            margin-bottom:3px;
+            line-height: 40px;
+            padding-right: 10px;
+
+        }
+        span {
+            float:right;
+        }
+
+    </style>
+</head>
+<body>
+    <p>HTML</p>
+    <p>CSS</p>
+    <p>JavaScript</p>
+
+    <button id ="add-chart">Bar Chart</button>
+    <div class="chart-wrapper">
+
+    </div>
+    <hr />
+<input type="text" id="input-text" placeholder="Enter item">
+    <button id="add-button">Add Text</button>
+    <ul id="lists">
+
+    </ul>
+
+    <button id="test-button">Test mouse event</button>
+
+    <script src="./countries.js"></script>
+    <script>
+        const data = [100,150,250,300,380,400,430,460,500];
+        const chartWrapper = document.querySelector('.chart-wrapper');
+
+        const addChart = document.querySelector('#add-chart');
+
+        addChart.addEventListener('click', function(){
+            chartWrapper.innerHTML = ''
+            data.forEach((number) => {
+            let div = document.createElement('div');
+            let span = document.createElement('span');
+            span.textContent = number;
+            div.appendChild(span)
+            div.style.width = (number/500)*100 +'%';
+            div.style.backgroundColor = `rgba(0,255,0,${number/500})`;
+            chartWrapper.appendChild(div)
+        })
+
+        });
+
+        const items = ['item 1','item 2','item 3'];
+        const lists = document.querySelector('#lists');
+        const addButton = document.querySelector('#add-button');
+
+        const displayItems = () => {
+            items.forEach((item) => {
+                let li = document.createElement('li');
+                li.textContent = item;
+                lists.appendChild(li)
+                console.log(item);
+            })
+        }
+
+        const addItem = () => {
+            lists.innerHTML = '';
+            let inputElem = document.querySelector('#input-text');
+            let inputValue = inputElem.value;
+            if(inputValue){
+                items.push(inputValue);
+            }
+
+            inputElem.value = ''
+            displayItems()
+        }
+
+        addButton.addEventListener('click',() => {
+            addItem();
+        })
+
+        displayItems();
+
+        const paragraphs = document.querySelectorAll('p');
+        console.log(paragraphs)
+    const testButton = document.querySelector('#test-button')
+         document.body.addEventListener('mouseover',(e) => {
+            console.log(e);
+            console.log(e.target);
+            console.log(e.pageX);
+            console.log(e.pageY);
+
+        })
+
+
+
+    </script>
+</body>
+</html>

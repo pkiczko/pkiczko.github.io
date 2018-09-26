@@ -1,0 +1,260 @@
+<html>
+<head>
+
+<style>
+body {
+  background-color: black;
+  color: white;
+}
+h1 {flex-basis: 100%;}
+header {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
+}
+table {
+  margin: auto;
+}
+button {
+  background-color: black;
+  color: white;
+
+  border: 2px solid white;
+  padding: 5px;
+  border-radius: 5px;
+  display: inline-block;
+}
+button:hover {background: white;
+color: black;}
+.inputs {
+    text-align: center;
+    flex-grow: 2;
+    type: 'number';
+    flex-basis: 25%;
+    placeholder:'Insert an integer number...';
+    margin: 'auto';}
+    @media (max-width: 900px) {
+        .inputs {flex-basis: 50%;}
+
+    }
+@media (max-width: 600px) {
+    .inputs {flex-basis: 100%;}
+
+}
+
+</style>
+<script src="lodash.js"></script>
+
+</head>
+<body>
+
+  <script>
+  // let valueArr = [[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],
+  //     [1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],
+  //     [1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9]];
+  let fonts = ['Arial', 'Arial Black', 'Courier', 'Courier New', 'Verdana', 'Georgia', 'Times New Roman', 'Tahoma', 'Roboto', 'Fantasy', 'Palatino', 'Garamond', 'Bookman', 'Comic Sans MS', 'Trebuchet MS', 'Impact'];
+  let fontSize = ['xx-small','x-small','small','medium','large','x-large','xx-large'];
+  let alignment = ['left', 'center', 'right'];
+let inputObj = {};
+let menu = document.createElement('div');
+          //div.textContent = input;
+          let header = document.createElement('header');
+          header.style.backgroundColor="green";
+          header.style.color = "white";
+          header.style.style = "tahoma";
+          header.style.fontSize = "medium";
+          header.style.textAlign = 'center';
+          header.style.marginBottom = '5px';
+          header.style.padding = '5px';
+          document.body.appendChild(header);
+          h1Create('HTML Table Generator');
+          // creating input fields with description
+          spanCreate('Number of rows');
+          createInput('inputTd', 'rowField', 5, 0);
+          //let inputTd = document.querySelector('#' + inputObj['inputTd']);
+
+          spanCreate('Number of columns');
+          createInput('inputTr', 'colField', 5, 0);
+          //let inputTr = document.querySelector('#' + inputObj['inputTr']);
+          //console.log(inputTr);
+          spanCreate('Table width (%)');
+          createInput('inputTw', 'widthField', 80, 0);
+          //let inputTw = document.querySelector('#' + inputObj['inputTw']);
+
+          spanCreate('Border width');
+          createInput('inputTb', 'borderField', 2, 0);
+          //let inputTb = document.querySelector('#' + inputObj['inputTb']);
+
+          spanCreate('Table background');
+          createInput('colorT', 'tableColor', '#ffff80', 1);
+          //let colorT = document.querySelector('#' + inputObj['colorT']);
+
+          spanCreate('Head background');
+          createInput('colorH', 'headColor', '#000000', 1);
+          //let colorH = document.querySelector('#' + inputObj['colorH']);
+
+          spanCreate('Border color');
+          createInput('colorB', 'borderColor', '#1c6df4', 1);
+          //let colorB = document.querySelector('#' + inputObj['colorB']);
+
+          spanCreate('Font color');
+          createInput('colorF', 'fontColor', '#000000', 1);
+          //let colorF = document.querySelector('#' + inputObj['colorF']);
+
+
+            //now making drop down objects
+          spanCreate('Font type');
+          createSelect('Font', fonts, 'fontType', 6);
+          //let fType = document.querySelector('#' + inputObj['Font']);
+          createSelect('Size', fontSize, 'fontSize', 3);
+          //let fSize = document.querySelector('#' + inputObj['Size']);
+
+          spanCreate('Alignment');
+          createSelect('Alignment', alignment, 'align', 1);
+          let textAlign = document.querySelector('#' + inputObj['Alignment']);
+          //console.log(inputObj);
+
+          spanCreate(' ');
+          let button = document.createElement('button');
+          button.autofocus = true;
+          button.id = 'tableGenerator';
+          button.addEventListener("click", function(){createTable()});
+          button.innerHTML = 'Generate';
+          header.lastChild.appendChild(button);
+
+let inputTr = document.getElementById('colField');
+let inputTd = document.getElementById('rowField');
+let colorT = document.querySelector('#' + inputObj['colorT']);
+let colorH = document.querySelector('#' + inputObj['colorH']);
+let colorB = document.querySelector('#' + inputObj['colorB']);
+let colorF = document.querySelector('#' + inputObj['colorF']);
+let inputTw = document.querySelector('#' + inputObj['inputTw']);
+let inputTb = document.querySelector('#' + inputObj['inputTb']);
+let fType = document.querySelector('#' + inputObj['Font']);
+let fSize = document.querySelector('#' + inputObj['Size']);
+function divCreate(input) {
+            let div = document.createElement('div');
+            div.textContent = input;
+            div.style.backgroundColor="darkblue";
+            div.style.color = "white";
+            div.style.style = "tahoma";
+            div.style.fontSize = "x-large";
+            div.style.fontWeight = '800';
+            div.style.marginBottom = '5px';
+            div.style.padding = '5px';
+            document.body.appendChild(div);
+          }
+function pCreate(input) {
+              let p = document.createElement('p');
+              p.textContent = input;
+              p.style.backgroundColor="black";
+              p.style.color = "white";
+              p.style.style = "tahoma";
+              p.style.fontSize = "medium";
+              p.style.fontWeight = '700';
+              p.style.margin = '10px';
+              document.body.appendChild(p);
+            }
+function spanCreate(input) {
+            let span = document.createElement('span');
+            span.innerHTML = input + '<br>';
+            //span.style.display = 'flexbox';
+            span.style.backgroundColor="green";
+            //span.style.border= "2px darkred solid";
+            span.classList= 'inputs';
+            span.style.color = "white";
+            span.style.style = "tahoma";
+            span.style.fontSize = "medium";
+            span.style.fontWeight = '700';
+            span.style.marginTop = '15px';
+            span.style.marginBottom = '15px';
+
+            span.style.padding = '0px';
+            header.appendChild(span);
+          }
+function h1Create(input) {
+                      let h1 = document.createElement('h1');
+                      h1.innerHTML = input + '<br>';
+                      h1.style.color = "white";
+                      h1.style.style = "tahoma";
+                      h1.style.fontWeight = '700';
+                      h1.style.margin = '10px';
+                      header.appendChild(h1);
+                    }
+function createInput(namez, id, value, i){
+                            let name = document.createElement('input');
+                            inputObj[namez] = id;
+                            if (i) {name.type='color';
+                            name.classList = 'inputs2';}
+                            else {name.classList = 'inputs1';}
+                            name.id = id;
+                            name.setAttribute('onchange', 'refresh()');
+                            name.defaultValue = value;
+                            header.lastChild.appendChild(name);}
+
+
+function createSelect(name, arr, id, defaultValue) {
+                              let select = document.createElement('select');
+                                select.id = id;
+                                select.classList = 'inputs2';
+                              inputObj[name] = id;
+                              //console.log(inputObj);
+                              for (i=0;i<arr.length;i++){
+                                let option = document.createElement('option');
+                                option.value = i;
+                                option.innerHTML = arr[i];
+                                select.add(option);}
+                                select.setAttribute('onchange', 'refresh()');
+                                select.value = defaultValue;
+                              header.lastChild.appendChild(select);
+                                }
+//let textAlign = document.querySelector('#' + inputObj['Alignment']);
+function refresh() {
+  if (document.getElementById('tableG')) {createTable()}
+
+ }
+
+function createTable() {
+  if (document.getElementById('tableG')) {
+    document.body.removeChild(document.getElementById('tableG'))}
+  let table = document.createElement('table');
+
+  //console.log(inputTb.value);
+  table.style.textAlign = alignment[textAlign.value];
+  table.border = `${inputTb.value} solid`;
+  //console.log(colorB.value);
+  table.style.borderColor = colorB.value;
+
+  table.id = 'tableG';
+  table.style.width = inputTw.value +'%';
+  //table.style.height = '400px';
+  table.style.color = colorF.value;
+  table.style.fontFamily = fonts[fType.value];
+  table.style.fontSize = fontSize[fSize.value];
+  table.style.backgroundColor = colorT.value;
+  table.style.borderSpacing = 0;
+  //console.log(inputTr.value);
+  for (i=0; i<inputTr.value; i++) {
+    let row = table.insertRow(i);
+
+    for (j=0; j<inputTd.value; j++) {
+      let cell = row.insertCell(j);
+      cell.innerHTML = 'valueArr[i][j]';
+      cell.style.borderColor = colorB.value;
+      cell.style.borderWidth = inputTb.value;
+    }
+  }
+  document.body.appendChild(table);
+};
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

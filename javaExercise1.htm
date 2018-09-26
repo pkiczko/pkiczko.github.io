@@ -1,0 +1,201 @@
+<html>
+<head>
+
+<script>
+
+/* 1. Variables */
+console.log('1. Variables');
+
+let firstName, lastName, maritalStatus, country, age;
+console.log(firstName!==0);
+let myAge = 33;
+let yourAge = 100;
+console.log(`I am ${myAge} years old. \nYou are ${yourAge} years old.`)
+
+/* 2. Data types */
+console.log('2. Data types');
+
+console.log('myAge is a:' + typeof(myAge));
+console.log('firstName is a:' + typeof(firstName));
+console.log('country is a:' + typeof(country));
+
+  /* 3. Strings */
+console.log('3. Strings');
+
+let company = 'Integrify Academy';
+console.log('a. ' + company);
+console.log('b. Length of the string is ' + company.length);
+console.log('c. String in uppercase: ' + company.toUpperCase());
+console.log('d. String in lowercase: ' + company.toLowerCase());
+console.log('e. Slicing out the first word: ' + company.slice(10));
+console.log('f. Is the word \'Academy\' contained in the string? ' + company.includes('Academy'));
+console.log('g. Splitting string into an array with split(). ' + company.split(''));
+console.log('h. Splitting string into two words: ' + company.split(' '));
+let givenCompanies = 'Facebook, Google, Microsoft, Apple, IBM,Oracle, Amazon';
+console.log('i. Splitting given string into an array: ' + givenCompanies.split(','));
+console.log('j. Replacing Integrify with Microsoft in 1st string: ' + company.replace('Integrify', 'Microsoft'));
+console.log('k. Finding index of \'A\' in the 1st string: ' + company.charAt(10));
+console.log('l. Finding character code for \'A\': ' + company.charCodeAt(10));
+console.log('m. Finding first occurance of \'e\' char in the 1st string: ' + company.indexOf('e'));
+console.log('n. Finding last occurance of \'e\' char in the 1st string: ' + company.lastIndexOf('e'));
+let company1 = '   Integrify Academy    ';
+console.log('o. Triming whitespace from ' + company1 + ': ' + company1.trim(' '));
+console.log('p. Does the 1st string start with \'I\'? ' + company.startsWith('I'));
+console.log('q. Does the 1st string end with \'y\'? ' + company.endsWith('y'));
+console.log('r. How many \'a\'s\' in the 1st string? ' + (company.match(/a/g)  || []).length);
+console.log('s. Using concat(): ' + 'Integrify'.concat('Academy'));
+console.log('t. Repeating: ' + company.repeat(5));
+
+/* 4. Boolean */
+console.log('4. Boolean');
+
+console.log(`a. Truthy statement:  ${company != 0}`);
+console.log(`b. Falsy statement:  ${company == 0}`);
+
+/* 5. Arithmetic Operators */
+console.log('5. Arithmetic Operators');
+
+let operandOne = 4;
+let operandTwo = 3;
+console.log('Operands: ' + operandOne + ' ' + operandTwo);
+console.log('Operands addition:' + (operandOne + operandTwo));
+console.log('Operands subtraction:' + (operandOne - operandTwo));
+console.log('Operands multiplication:' + (operandOne * operandTwo));
+console.log('Operands division:' + (operandOne / operandTwo));
+console.log('Operands modulus:' + (operandOne % operandTwo));
+console.log('Operands increment:' + (++operandOne));
+console.log('Operands decrement:' + (--operandOne));
+
+/* 6. Comparison Operators */
+console.log('6. Comparison Operators');
+
+console.log(`4 > 3 :  ${4 > 3}`);
+console.log(`4 >= 3 : ${4 >= 3}`);
+console.log(`4 < 3 : ${4 < 3}`);
+console.log(`4 <=3 : ${4 <=3}`);
+console.log(`4 == 4 : ${4 == 4}`);
+console.log(`4 !=4 : ${4 !=4}`);
+console.log(`4==\'4\' : ${4=='4'}`);
+console.log(`4!=\'4\' : ${4!='4'}`);
+console.log(`4 ==\'4\' : ${4 =='4'}`);
+console.log(`4 === 4 : ${4 === 4}`);
+console.log(`4!==4 : ${4!==4}`);
+
+/* 7. Logical Operators */
+console.log('7. Logical Operators');
+
+console.log(`4 > 3 && 10 < 12 : ${4 > 3 && 10 < 12} `);
+console.log(`4 > 3 && 10 > 12 : ${4 > 3 && 10 > 12}`);
+console.log(`4 > 3 || 10 < 12 : ${4 > 3 || 10 < 12}`);
+console.log(`4 > 3 || 10 > 12 : ${4 > 3 || 10 > 12}`);
+console.log(`!(4 > 3) : ${!(4 > 3)}`);
+console.log(`!(4 < 3) : ${!(4 < 3)}`);
+console.log(`!(false) : ${!(false)}`);
+console.log(`!(4 > 3 && 10 < 12) : ${!(4 > 3 && 10 < 12)}`);
+console.log(`!(4 > 3 && 10 > 12) : ${!(4 > 3 && 10 > 12)}`);
+
+/* 8. Conditionals */
+console.log('8. Conditionals');
+
+
+const hisAge = prompt('Enter your age: ');
+if (isNaN(hisAge)) {console.log('Input error, age is not a valid number.');}
+else {if (hisAge>=18) {console.log('You are old enough to drive!');
+      }
+      else {console.log(`You are too young to drive! Wait for ${18-hisAge} year(s)!`)}
+    }
+//console.log(hisAge);
+
+yourAge = prompt('Enter your age: ');
+if (isNaN(hisAge)) {console.log('Input error, age is not a valid number.')}
+else {if (yourAge>myAge) {console.log(`Your are ${yourAge-myAge} years older than me.`);}
+      else if (yourAge==myAge) console.log('We are of the same age!')
+      else console.log(`Your are ${myAge-yourAge} years younger than me.`)
+}
+
+/* 9. Ternary operator */
+console.log('9. Ternary operator');
+
+let a = 4;
+let b = 3;
+if (a>b) {console.log('a is greater than b.')}
+else if (b>a) {console.log('b is greater than a.')}
+else {console.log('a equals b.')}
+
+/* 10. Array */
+console.log('10. Array \n \n');
+
+const itCompanies = ['Facebook', 'Google', 'Microsoft', 'Apple', 'IBM', 'Oracle', 'Amazon'];
+console.log(`1. ${itCompanies}`);
+console.log(`2. Array length is ${itCompanies.length}`);
+console.log('3.');
+itCompanies.forEach(element => {console.log(`${element}`);});
+console.log(`4. `);
+itCompanies.forEach(element => {console.log(`${element.toUpperCase()}`);});
+let x = '';
+console.log(`x is equal to ${x}`);
+for (i=0; i<itCompanies.length; i++) {
+  if (i == itCompanies.length -2) {
+  x += itCompanies[i] + ' and ';}
+  else if (i != itCompanies.length -1) {
+  x += itCompanies[i] + ', ';}
+  else x += itCompanies[i];
+}
+console.log(`5. ${x} are big IT companies.`);
+console.log(`6. ${itCompanies.sort()}`);
+console.log(`7. ${itCompanies.reverse()}`);
+
+/* 11. Loop */
+console.log('11. Loop \n \n');
+// for loop
+let y = [];
+for (i=0; i<10; i++) {y.push(i+1);}
+console.log(`a. ${y}`);
+// while Loop
+y = [];
+console.log(`*check* ${y}`);
+i = 0;
+while (i<10) {y.push(i+1);
+i++;}
+console.log(` ${y}`);
+// do/while loop
+y = [];
+console.log(`*check* ${y}`);
+i = 0;
+do {y.push(i+1);
+  i++;}
+  while (i<10)
+console.log(` ${y}`);
+
+// for loop
+y = [];
+for (i=10; i>0; i--) {y.push(i);}
+console.log(`b. ${y}`);
+// while Loop
+y = [];
+console.log(`*check* ${y}`);
+i = 10;
+while (i>0) {y.push(i);
+i--;}
+console.log(` ${y}`);
+// do/while loop
+y = [];
+console.log(`*check* ${y}`);
+i = 10;
+do {y.push(i);
+  i--;}
+  while (i>0)
+console.log(` ${y} \n \n`);
+
+console.log(`c. `);
+for (i=0; i<itCompanies.length; i++) {
+  console.log(itCompanies[i]);}
+console.log(`\n \n`);
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
