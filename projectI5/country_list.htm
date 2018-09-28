@@ -34,7 +34,7 @@ body {
               input.style.width = '60%';
               input.style.margin = '0 20%';
               input.type = "text";
-              input.placeholder='Insert an integer number...';
+              input.placeholder='Insert search query...';
               input.style.marginTop= '15px';
               input.style.marginBottom= '15px';
               document.body.appendChild(menu);
@@ -48,68 +48,42 @@ body {
               stop.innerHTML='Search (any)';
               stop.style.marginLeft = '20px';
               stop.style.width = '10em';
-  stop.addEventListener('click', () => {
-
-        if (input.value) {
-          let toRemove = document.querySelectorAll('.divs');
-          for (var i = 0; i < toRemove.length; i++)
+  stop.addEventListener('click', () =>
+  {
+    if (input.value)
     {
-    article.removeChild(toRemove[i]);
-    }
-    for (i=0; i<countries.length; i++){
-      if (countries[i].length !== 1) {
-        let kingdoms = countries[i].split(' ');
-        for (j=0; j<kingdoms.length; j++){
-          if (kingdoms[j].toLowerCase() === input.value.toLowerCase()) {
-            a = randomHexaNumberGenerator();
-            divCreate(countries[i], a);
-          }
+      article.innerHTML=' ';
+      for (i=0; i<countries.length; i++)
+        {
+        if (countries[i].toLowerCase().includes(input.value.toLowerCase())){
+        a = randomHexaNumberGenerator();
+        divCreate(countries[i], a);}
         }
-      }
-    if (countries[i].toLowerCase() === input.value.toLowerCase()) {
-    //console.log('found');
-    someArray.push(countries[i]);
-    a = randomHexaNumberGenerator();
-    divCreate(countries[i], a);
     }
-
-  }
-    }
-
-
-
-
   });
               menu.appendChild(generate);
               menu.appendChild(stop);
-  generate.addEventListener('click',() => {
-      if (input.value) {
-        let toRemove = document.querySelectorAll('.divs');
-        for (var i = 0; i < toRemove.length; i++)
-{
-  article.removeChild(toRemove[i]);
-}
-for (i=0; i<countries.length; i++){
-  if (countries[i].length !== 1) { let country = countries[i].split(' ')[0];
-  if (country.toLowerCase() === input.value.toLowerCase()) {
-    //console.log('found');
-    someArray.push(countries[i]);
-    a = randomHexaNumberGenerator();
-    divCreate(countries[i], a);
-  }}
-else if (countries[i].toLowerCase() === input.value.toLowerCase()) {
-  //console.log('found');
-  someArray.push(countries[i]);
-  a = randomHexaNumberGenerator();
-  divCreate(countries[i], a);
-}}
-}
-  })
+  generate.addEventListener('click',() =>
+      {
+      if (input.value)
+        {
+          article.innerHTML=' ';
+          for (i=0; i<countries.length; i++)
+            {
+            if (countries[i].substring(0,input.value.length).toLowerCase() === input.value.toLowerCase())
+              {
+                a = randomHexaNumberGenerator();
+                divCreate(countries[i], a);
+                }
+
+            }
+        }
+      });
 
 
 
 
-let article = document.createElement("div");
+let article = document.createElement("article");
 
             document.body.appendChild(article);
 
