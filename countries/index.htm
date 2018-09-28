@@ -2,287 +2,285 @@
 <head>
 
 <style>
-body {
-  background-color: black;
-  color: white;
-}
-h1 {
-  flex-basis: 100%;
-  color: white;
-  font-weight: 700;
-  margin: 10px;
-}
-.titleSpans {
-  background-image: linear-gradient(darkblue, darkred);
-  width: 100%;
-  margin: 1 white solid;
-  box-shadow: 1px 1px 1px black;
+  body {
+    background-color: black;
+    color: white;  }
+  h1 {
+    flex-basis: 100%;
+    color: white;
+    font-weight: 700;
+    margin: 10px;  }
+  .titleSpans {
+    background-image: linear-gradient(darkblue, darkred);
+    width: 100%;
+    margin: 1 white solid;
+    box-shadow: 1px 1px 1px black;
+    }
+  .titleSpans:hover {
+    background-image: linear-gradient(blue, darkred);
+
   }
-.titleSpans:hover {
-  background-image: linear-gradient(blue, darkred);
-
-}
-a {
-  color: white;
-  text-decoration: none;
+  a {
+    color: white;
+    text-decoration: none;
 
 
-}
-header {
-  display: flex;
-  flex-wrap: wrap;
-  width: 80%;
-  margin: auto;
-  text-align: center;
+  }
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: auto;
+    text-align: center;
 
-}
-input {
-  width: 80%;
-  margin: auto;
-  height: 2em;
-  font-size: x-large;
-  margin-bottom: 35px;
+  }
+  input {
+    width: 80%;
+    margin: auto;
+    height: 2em;
+    font-size: x-large;
+    margin-bottom: 35px;
+  }
+  div {
 
-}
-div {
+    display: flex;
+    background-color: #1034cc;
+    text-align: center;
+    width: 80%;
+    border-radius: 5px;
+    margin: 4px 10%;
+    color: white;
+    font-size: large;
+    font-weight: 800;
+    padding: 5px;
 
-  display: flex;
-  background-color: #1034cc;
-  text-align: center;
-  width: 80%;
-  border-radius: 5px;
-  margin: 4px 10%;
-  color: white;
-  font-size: large;
-  font-weight: 800;
-  padding: 5px;
+  }
+  span {
+    flex-basis: 16.5%;
+    background-color: #5485ed;
+    margin: 3px;
+    text-align: center;
 
-}
-span {
-  flex-basis: 16.5%;
-  background-color: #5485ed;
-  margin: 3px;
-  text-align: center;
+  }
+  @media (max-width: 1000px) {
+      div {width: 94%;
+          margin: 3px 3%;}
 
-}
-@media (max-width: 1000px) {
-    div {width: 94%;
-        margin: 3px 3%;}
+  }
+  @media (max-width: 820px) {
+      div {width: 96%;
+          margin: 3px 2%;
+          flex-wrap: wrap;
+        align-content: stretch;}
+      header {width: 100%;}
+      input {
+            width: 96%;}
+      span {
+              flex-basis: 33%;
+              flex-grow: 2;
+              }
 
-}
-@media (max-width: 820px) {
-    div {width: 96%;
-        margin: 3px 2%;
-        flex-wrap: wrap;
-      align-content: stretch;}
-    header {width: 100%;}
-    input {
-          width: 96%;}
-    span {
-            flex-basis: 33%;
-            flex-grow: 2;
-            }
-
-}
-img {
-  height: 60px;
-}
-span {
-  flex-basis: 16.5%;
-  background-color: #5485ed;
-  margin: 3px;
-  text-align: center;
-
-}
+  }
+  img {
+    height: 60px;
+  }
+  span {
+    flex-basis: 16.5%;
+    background-color: #5485ed;
+    margin: 3px;
+    text-align: center;
+  }
 </style>
 
 </head>
 <body>
-  <script>
-let endArray = [];
-let countryArray = [];
-let header = document.createElement('header');
-            //header.innerHTML = 'Countries';
-            document.body.appendChild(header);
-            //menu.textContent = input;
+<script>
+  let endArray = [];
+  let countryArray = [];
+  let header = document.createElement('header');
+              //header.innerHTML = 'Countries';
+              document.body.appendChild(header);
+              //menu.textContent = input;
 
-            h1Create('Countries');
-let name = document.createElement('input');
-            //name.id = id;
-            name.autofocus = true;
-            name.setAttribute('placeholder','Enter search query...');
-            name.setAttribute('oninput', 'refresh()');
-            header.appendChild(name);
-let article = document.createElement("article");
+              h1Create('Countries');
+  let name = document.createElement('input');
+              //name.id = id;
+              name.autofocus = true;
+              name.setAttribute('placeholder','Enter search query...');
+              name.setAttribute('oninput', 'refresh()');
+              header.appendChild(name);
 
-            document.body.appendChild(article);
-            //divCreate([1, 2, 3, 4, 5, 6]);
-function divCreate(a) {
-  let div = document.createElement('div');
 
-              div.classList.add("divs");
-              article.appendChild(div);
+  function loadJSON(callback) {
 
-            for (i=0; i<6; i++) {
-            let span = document.createElement('span');
-            span.innerHTML = a[i];
-            div.appendChild(span);}
+      let json = new XMLHttpRequest();
+          json.overrideMimeType("application/json");
+      json.open('GET', 'all.json', false); // Replace 'my_data' with the path to your file
+      json.onreadystatechange = function () {
+            if (json.readyState == 4 && json.status == "200") {
+
+              // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+              callback(json.responseText);
             }
+      };
+      json.send(null);
+   }
+   let title = ['Country', 'Capital', 'Population', 'Area', 'Language(s)', 'Flag'];
+   let nav = document.createElement('nav');
+        document.body.appendChild(nav);
+   let divT = document.createElement('div');
 
-function loadJSON(callback) {
-
-    let json = new XMLHttpRequest();
-        json.overrideMimeType("application/json");
-    json.open('GET', 'all.json', false); // Replace 'my_data' with the path to your file
-    json.onreadystatechange = function () {
-          if (json.readyState == 4 && json.status == "200") {
-
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-            callback(json.responseText);
-          }
-    };
-    json.send(null);
- }
- let title = ['Country', 'Capital', 'Population', 'Area', 'Language(s)', 'Flag'];
- let divT = document.createElement('div');
-
-             divT.id="titleDiv";
-             article.appendChild(divT);
-             divT.style.backgroundColor = 'darkred';
-           for (i=0; i<6; i++) {
-           let span = document.createElement('span');
-           span.classList = 'titleSpans';
-           span.setAttribute('onclick',`sort(${i})`);
-           span.innerHTML = title[i];
-           //`<a href='#' onclick='sort(${i});'>${title[i]}</a>`;
-           divT.appendChild(span);}
+               divT.id="titleDiv";
+               divT.style.backgroundColor = 'darkred';
+               nav.appendChild(divT);
+             for (i=0; i<6; i++) {
+             let span = document.createElement('span');
+             span.classList = 'titleSpans';
+             span.setAttribute('onclick',`sort(${i})`);
+             span.innerHTML = title[i];
+             //`<a href='#' onclick='sort(${i});'>${title[i]}</a>`;
+             divT.appendChild(span);}
 
 
- loadJSON(function(response) {
-  // Parse JSON string into object
-    let countries = JSON.parse(response);
-    //console.log(actual_JSON);
-    //let keysArray = ['name', 'capital', 'population', 'area', 'languages', 'flag' ];
-    //for (i=0; i<actual_JSON.length;i++){
-    countries.forEach(country =>{
-      let {name, capital, population, area, languages, flag} = country;
-      countryArray.push([name, capital, population, area, languages, flag]);
+    let main = document.createElement("main");
+
+                document.body.appendChild(main);
+                //divCreate([1, 2, 3, 4, 5, 6]);
+    function divCreate(a) {
+      let div = document.createElement('div');
+
+                  div.classList.add("divs");
+                  main.appendChild(div);
+
+                for (i=0; i<a.length; i++) {
+                let span = document.createElement('span');
+                span.innerHTML = a[i];
+                div.appendChild(span);}
+                }
+   loadJSON(function(response) {
+    // Parse JSON string into object
+      let countries = JSON.parse(response);
+      //console.log(actual_JSON);
+      //let keysArray = ['name', 'capital', 'population', 'area', 'languages', 'flag' ];
+      //for (i=0; i<actual_JSON.length;i++){
+      countries.forEach(country =>{
+        let {name, capital, population, area, languages, flag} = country;
+        countryArray.push([name, capital, population, area, languages, flag]);
 
 
-    });
-    //let {name, capital, population, area, languages, flag} = keysQuery;
+      });
+      //let {name, capital, population, area, languages, flag} = keysQuery;
 
 
 
-  //}
-});
+    //}
+  });
 
-function h1Create(input) {
-                      let h1 = document.createElement('h1');
-                      h1.innerHTML = input + '<br>';
-                      header.appendChild(h1);
-                    }
+  function h1Create(input) {
+                        let h1 = document.createElement('h1');
+                        h1.innerHTML = input + '<br>';
+                        header.appendChild(h1);
+                      }
 
 
-function start() {
-  for (j=0; j<countryArray.length;j++) {
-    //console.log(j + ' ' + countryArray[j] + countryArray[j][4][0].name);
-  if (countryArray[j][4].length==1) {
-  divCreate([countryArray[j][0],countryArray[j][1],countryArray[j][2],countryArray[j][3], countryArray[j][4][0].name, `<img alt='flag' src='${countryArray[j][5]}'/>`]);
-  }
-  else if (countryArray[j][4].length==2)
-  {
-  divCreate([countryArray[j][0],countryArray[j][1],countryArray[j][2],countryArray[j][3], `${countryArray[j][4][0].name} ${countryArray[j][4][1].name}`, `<img alt='flag' src='${countryArray[j][5]}'/>`]);}
-  else {
-  divCreate([countryArray[j][0],countryArray[j][1],countryArray[j][2],countryArray[j][3], `${countryArray[j][4][0].name} ${countryArray[j][4][1].name} ${countryArray[j][4][2].name}`, `<img alt='flag' src='${countryArray[j][5]}'/>`]);}
-}
-endArray = countryArray;
-}
-function refresh() {
-    endArray = [];
-    let toRemove = document.querySelectorAll('.divs');
-    for (y = 0; y < toRemove.length; y++)
+  function start() {
+    for (j=0; j<countryArray.length;j++) {
+      //console.log(j + ' ' + countryArray[j] + countryArray[j][4][0].name);
+    if (countryArray[j][4].length==1) {
+    divCreate([countryArray[j][0],countryArray[j][1],numberWithCommas(countryArray[j][2]),`${numberWithCommas(countryArray[j][3])} km<sup>2</sup>`, countryArray[j][4][0].name, `<img alt='flag' src='${countryArray[j][5]}'/>`]);
+    }
+    else if (countryArray[j][4].length==2)
     {
-    article.removeChild(toRemove[y]);
-    }
-    for (z=0; z<countryArray.length; z++){
-    if (countryArray[z][0].toLowerCase().includes(name.value.toLowerCase())||countryArray[z][1].toLowerCase().includes(name.value.toLowerCase()) ) {
-    if (countryArray[z][4].length==1) {
-    divCreate([countryArray[z][0],countryArray[z][1],countryArray[z][2],countryArray[z][3], countryArray[z][4][0].name, `<img alt='flag' src='${countryArray[z][5]}'/>`]);
-    }
-    else if (countryArray[z][4].length==2)
-    {
-    divCreate([countryArray[z][0],countryArray[z][1],countryArray[z][2],countryArray[z][3], `${countryArray[z][4][0].name} ${countryArray[z][4][1].name}`, `<img alt='flag' src='${countryArray[z][5]}'/>`]);
-    }
+    divCreate([countryArray[j][0],countryArray[j][1],numberWithCommas(countryArray[j][2]),`${numberWithCommas(countryArray[j][3])} km<sup>2</sup>`, `${countryArray[j][4][0].name} ${countryArray[j][4][1].name}`, `<img alt='flag' src='${countryArray[j][5]}'/>`]);}
     else {
-    divCreate([countryArray[z][0],countryArray[z][1],countryArray[z][2],countryArray[z][3], `${countryArray[z][4][0].name} ${countryArray[z][4][1].name} ${countryArray[z][4][2].name}`, `<img alt='flag' src='${countryArray[z][5]}'/>`]);
-    }
-
-    endArray.push(countryArray[z]);
-
-    // someArray.push(countries[i]);
-    // a = randomHexaNumberGenerator();
-    // divCreate(countries[i], a);
-    }}
-}
-function sort(number) {
-   if (number === 2 || number === 3)
-        {
-     endArray.sort(compareNum(number));
-     let toRemove = document.querySelectorAll('.divs');
-     for (y = 0; y < toRemove.length; y++)
-     {
-     article.removeChild(toRemove[y]);
-     }
-     for (z=0; z<endArray.length; z++){
-     if (endArray[z][4].length==1) {
-     divCreate([endArray[z][0],endArray[z][1],endArray[z][2],endArray[z][3], endArray[z][4][0].name, `<img alt='flag' src='${endArray[z][5]}'/>`]);
-     }
-     else if (endArray[z][4].length==2)
-     {
-     divCreate([endArray[z][0],endArray[z][1],endArray[z][2],endArray[z][3], `${endArray[z][4][0].name} ${endArray[z][4][1].name}`, `<img alt='flag' src='${endArray[z][5]}'/>`]);
-     }
-     else {
-     divCreate([endArray[z][0],endArray[z][1],endArray[z][2],endArray[z][3], `${endArray[z][4][0].name} ${endArray[z][4][1].name} ${endArray[z][4][2].name}`, `<img alt='flag' src='${endArray[z][5]}'/>`]);
-     }
-   }}
-   else {
-     endArray.sort(compare(number));
-     let toRemove = document.querySelectorAll('.divs');
-     for (y = 0; y < toRemove.length; y++)
-     {
-     article.removeChild(toRemove[y]);
-     }
-     for (z=0; z<endArray.length; z++){
-     if (endArray[z][4].length==1) {
-     divCreate([endArray[z][0],endArray[z][1],endArray[z][2],endArray[z][3], endArray[z][4][0].name, `<img alt='flag' src='${endArray[z][5]}'/>`]);
-     }
-     else if (endArray[z][4].length==2)
-     {
-     divCreate([endArray[z][0],endArray[z][1],endArray[z][2],endArray[z][3], `${endArray[z][4][0].name} ${endArray[z][4][1].name}`, `<img alt='flag' src='${endArray[z][5]}'/>`]);
-     }
-     else {
-     divCreate([endArray[z][0],endArray[z][1],endArray[z][2],endArray[z][3], `${endArray[z][4][0].name} ${endArray[z][4][1].name} ${endArray[z][4][2].name}`, `<img alt='flag' src='${endArray[z][5]}'/>`]);
-          }
+    divCreate([countryArray[j][0],countryArray[j][1],numberWithCommas(countryArray[j][2]),`${numberWithCommas(countryArray[j][3])} km<sup>2</sup>`, `${countryArray[j][4][0].name} ${countryArray[j][4][1].name} ${countryArray[j][4][2].name}`, `<img alt='flag' src='${countryArray[j][5]}'/>`]);}
+  }
+  endArray = countryArray;
+  }
+  function refresh() {
+      endArray = [];
+      purge();
+      for (z=0; z<countryArray.length; z++){
+      if (countryArray[z][0].toLowerCase().includes(name.value.toLowerCase())||countryArray[z][1].toLowerCase().includes(name.value.toLowerCase()) ) {
+      if (countryArray[z][4].length==1) {
+      divCreate([countryArray[z][0],countryArray[z][1],numberWithCommas(countryArray[z][2]),`${numberWithCommas(countryArray[z][3])} km<sup>2</sup>`, countryArray[z][4][0].name, `<img alt='flag' src='${countryArray[z][5]}'/>`]);
       }
+      else if (countryArray[z][4].length==2)
+      {
+      divCreate([countryArray[z][0],countryArray[z][1],numberWithCommas(countryArray[z][2]),`${numberWithCommas(countryArray[z][3])} km<sup>2</sup>`, `${countryArray[z][4][0].name} ${countryArray[z][4][1].name}`, `<img alt='flag' src='${countryArray[z][5]}'/>`]);
       }
-    }
-function compare(num) {
-    return function(o, p){
-      a = o[num];
-      b = p[num];
-   if (a< b) return -1;
-   if (a> b) return 1;
-   return 0;}
+      else {
+      divCreate([countryArray[z][0],countryArray[z][1],numberWithCommas(countryArray[z][2]),`${numberWithCommas(countryArray[z][3])} km<sup>2</sup>`, `${countryArray[z][4][0].name} ${countryArray[z][4][1].name} ${countryArray[z][4][2].name}`, `<img alt='flag' src='${countryArray[z][5]}'/>`]);
+      }
+
+      endArray.push(countryArray[z]);
+
+      // someArray.push(countries[i]);
+      // a = randomHexaNumberGenerator();
+      // divCreate(countries[i], a);
+      }}
+  }
+  let forgetMeNot;
+  function print(array) {
+         for (z=0; z<array.length; z++){
+         if (array[z][4].length==1) {
+         divCreate([array[z][0],array[z][1],numberWithCommas(array[z][2]),`${numberWithCommas(array[z][3])} km<sup>2</sup>`, array[z][4][0].name, `<img alt='flag' src='${array[z][5]}'/>`]);
+         }
+         else if (array[z][4].length==2)
+         {
+         divCreate([array[z][0],array[z][1],numberWithCommas(array[z][2]),`${numberWithCommas(array[z][3])} km<sup>2</sup>`, `${array[z][4][0].name} ${array[z][4][1].name}`, `<img alt='flag' src='${array[z][5]}'/>`]);
+         }
+         else {
+         divCreate([array[z][0],array[z][1],numberWithCommas(array[z][2]),`${numberWithCommas(array[z][3])} km<sup>2</sup>`, `${array[z][4][0].name} ${array[z][4][1].name} ${array[z][4][2].name}`, `<img alt='flag' src='${array[z][5]}'/>`]);
+         }
+       }}
+  function sort(number) {
+      if (number === forgetMeNot){  //if same button pressed consecutively
+        endArray.reverse();
+        purge();  //cleaning existing lines
+        print(endArray); //printing new lines
+      }
+      else {
+     if (number === 2 || number === 3)
+          {
+       endArray.sort(compareNum(number));
+       purge();
+       print(endArray);
+       forgetMeNot = number;
+        }
+     else {
+       endArray.sort(compare(number));
+       purge();
+       print(endArray);
+       forgetMeNot = number;
+      }}
+      }
+  //function from StackOverflow by Kerry Jones modified by Elias Zamaria
+ //https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+ function purge() {
+   main.innerHTML = ' ';
+
  }
-function compareNum(num) {
-  return function(o, p){
-    a = o[num];
-    b = p[num];
-  return (a-b);}
+  const numberWithCommas = (x) => {
+    if (!x) {return 0}
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-//console.log(countryArray);
-start();
+    function compare(num) {      //for comparing strings
+        return function(o, p){
+          a = o[num];
+          b = p[num];
+       if (a< b) return -1;
+       if (a> b) return 1;
+       return 0;}
+     }
+    function compareNum(num) {  //for comparing numbers
+      return function(o, p){
+        a = o[num];
+        b = p[num];
+      return (a-b);}
+    }
+    //console.log(countryArray);
+    start();
 
 
 </script>
