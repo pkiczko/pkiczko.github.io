@@ -114,8 +114,8 @@
   function loadJSON(callback) {
 
       let json = new XMLHttpRequest();
-          json.overrideMimeType("application/json");
-      json.open('GET', 'all.json', false); // Replace 'my_data' with the path to your file
+      json.overrideMimeType("application/json");
+      json.open('GET', 'http://restcountries.eu/rest/v2/all', false); // Replace 'my_data' with the path to your file
       json.onreadystatechange = function () {
             if (json.readyState == 4 && json.status == "200") {
 
@@ -125,6 +125,15 @@
       };
       json.send(null);
    }
+   loadJSON(function(response) {
+    // Parse JSON string into object
+      let countries = JSON.parse(response);
+      countries.forEach(country =>{
+        let {name, capital, population, area, languages, flag} = country;
+        countryArray.push([name, capital, population, area, languages, flag]);
+      });
+
+  });
    let title = ['Country', 'Capital', 'Population', 'Area', 'Language(s)', 'Flag'];
    let nav = document.createElement('nav');
         document.body.appendChild(nav);
@@ -136,7 +145,7 @@
              for (i=0; i<6; i++) {
              let span = document.createElement('span');
              span.classList = 'titleSpans';
-             span.setAttribute('onclick',`sort(${i})`);
+             span.setAttribute('onclick',`soort(${i})`);
              span.innerHTML = title[i];
              //`<a href='#' onclick='sort(${i});'>${title[i]}</a>`;
              divT.appendChild(span);}
@@ -157,24 +166,7 @@
                 span.innerHTML = a[i];
                 div.appendChild(span);}
                 }
-   loadJSON(function(response) {
-    // Parse JSON string into object
-      let countries = JSON.parse(response);
-      //console.log(actual_JSON);
-      //let keysArray = ['name', 'capital', 'population', 'area', 'languages', 'flag' ];
-      //for (i=0; i<actual_JSON.length;i++){
-      countries.forEach(country =>{
-        let {name, capital, population, area, languages, flag} = country;
-        countryArray.push([name, capital, population, area, languages, flag]);
 
-
-      });
-      //let {name, capital, population, area, languages, flag} = keysQuery;
-
-
-
-    //}
-  });
 
   function h1Create(input) {
                         let h1 = document.createElement('h1');
@@ -234,7 +226,7 @@
          divCreate([array[z][0],array[z][1],numberWithCommas(array[z][2]),`${numberWithCommas(array[z][3])} km<sup>2</sup>`, `${array[z][4][0].name} ${array[z][4][1].name} ${array[z][4][2].name}`, `<img alt='flag' src='${array[z][5]}'/>`]);
          }
        }}
-  function sort(number) {
+  function soort(number) {
       if (number === forgetMeNot){  //if same button pressed consecutively
         endArray.reverse();
         purge();  //cleaning existing lines
