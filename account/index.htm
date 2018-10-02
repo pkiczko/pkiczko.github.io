@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<title>Accounting</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+  <h1>Simple Finances</h1>
+  <form class='inputsDiv'>
+    <span>
+      <label for='description'>Description:</label><br>
+      <input id='description' required placeholder='Description'></input>
+    </span>
+    <span>
+      <label for='amount'>Amount:</label><br>
+      <input id='amount' type='number' min='0' required placeholder='Amount in euro';></input></span>
+    <span>
+      <label for='date'>When (optional):</label><br>
+      <input id='date' type='date' placeholder='When'></input>
+    </span>
+    <span>
+      <label for='time'>Time (optional):</label><br>
+      <input id='time' type='time' placeholder='time' ></input>
+    </span>
+    <span>
+      <label for='place'>Where (optional):</label><br>
+      <input id='place' type='text' placeholder='Where'></input>
+    </span>
+    <span>
+      <br>
+      <select id='selector' size='1'>
+        <option value=0>Income</option>
+        <option value=1>Expense</option>
+      </select>
+    </span>
+    <span>
+      <br>
+      <input id='addb' value="Add" type="button" onclick='add();'>
+
+    </span>
+    <span>
+      <br>
+      <input id='reset' value="Reset" type="button" onclick='localStorage.clear(); dataArray=[]; refresh();'>
+
+    </span>
+  </form>
+</header>
+<main>
+  <article id='inc'></article>
+  <article id='exp'></article>
+  <div id='balance'>Balance: 0</div>
+</main>
+<script type="text/javascript" src='script.js'> </script>
+
+
+
+
+
+
+
+</body>
+</html>
