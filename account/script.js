@@ -131,7 +131,7 @@ const add = () => {
     else {clock = `${d.getHours()}:${d.getMinutes()}`}
     if (!date.value) {
 
-      let array = ['Info: ' + description.value, `${twoDigit(d.getDate())}/${twoDigit(d.getMonth())}/${d.getFullYear()}`, clock, `${amount.value} €`, placeValue, select.value ];
+      let array = ['Info: ' + description.value, `${twoDigit(d.getDate())}/${twoDigit(d.getMonth()+1)}/${d.getFullYear()}`, clock, `${amount.value} €`, placeValue, select.value ];
       //divCreate(array);
       dataArray.push(array);
       console.log(`pushing data to array: ${array}`)
