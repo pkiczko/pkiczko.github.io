@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>HTML5 Form</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+
+        *,*::after,*::before {
+
+            box-sizing: border-box;
+
+        }
+        body {
+          background-color: #454E57;
+          color: white;
+          font-family: arial;
+
+        }
+        form {
+
+            width:80%;
+
+            margin: auto;
+
+            padding:20px;
+
+        }
+
+        fieldset{
+            outline: none;
+            padding:25px;
+            border: none;
+
+        }
+        h1 {text-align: center;
+          font-family: arial;
+          font-weight: 600;}
+        h3 {text-align: left;}
+        hr {color: #02B1F4;}
+
+
+        legend{
+
+            text-align: center;
+            width: 100%;
+
+        }
+
+        input {
+          text-align: left;
+          width: 80%;
+           margin:3px;
+           border: none;
+           background-color: #454E57;
+           color: white;
+           padding:1px;
+           border-bottom: 1px solid gray;
+        }
+
+        input:valid,textarea:valid {
+          text-align: left;
+            outline:none;
+            color:
+            border:none;
+
+            border-radius: 1px;
+
+            /*box-shadow:0 0 2px 1px rgb(72, 245, 19);*/
+
+            background: #454E57;
+
+        }
+
+        input:focus:invalid,textarea:focus:invalid{
+
+            /* border:2px solid red; */
+
+            outline:none;
+
+            border:none;
+
+
+
+        }
+
+        input::placeholder {
+
+            text-align: left;
+
+            font-size: 12px;
+
+            font-weight: lighter;
+
+            color: lightgray;
+
+        }
+
+
+
+        [placeholder]:valid {
+
+            color:white;
+            background-color: #454E57;
+
+            outline: none;
+
+
+
+        }
+
+        [placeholder]:focus:invalid {
+
+            color: lightgray;
+
+        }
+        article {
+          display: flex;
+          flex-direction: column;
+        }
+        #disciplines label {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            float:left;
+            width:170px;
+            margin:4px;
+            background-color:#454E57;
+            border:1px solid white;
+
+        }
+
+        #disciplines label span {
+            text-align:center;
+            font-size: 12px;
+            padding:13px 0px;
+            display:block;
+        }
+
+        #disciplines label input {
+            position:absolute;
+            top:-20px;
+        }
+
+        #disciplines input:checked + span {
+            background-color:#02B1F4;
+            color: white;
+        }
+        textarea {
+          background-color: #454E57;
+          border: 1px solid grey;
+          color: lightgrey;
+        }
+        button {
+          background-color: #454E57;
+          border-radius: 0px;
+          color: white;
+          border: 1px solid white;
+          padding: 10px 3em;
+        }
+        button:hover {
+          background-color: #02B1F4;
+          border-radius: 0px;
+          border: none;
+          padding: 10px 3em;
+        }
+        #little {
+          display: inline-flex;
+          width: 80.5%;
+          margin: 1em 0;
+        }
+        .little2 {
+          flex-basis: 25%;
+          overflow: hidden;
+        }
+        .col {
+          display:flex;
+        }
+        .col2 {
+          flex-basis: 40%;
+          margin-right: 1em;
+        }
+        .gray {
+          color: grey;
+          font-size: 12px;
+        }
+
+
+        .check {
+          display: block;
+          position: relative;
+          padding-left: 25px;
+          margin: 7px 2px;
+          cursor: pointer;
+          font-size: 12px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        input[type='checkbox'] {
+          background-color: #454E57;
+          border: 1px solid grey;
+          border-radius: 0px;
+        }
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 15px;
+            width: 15px;
+            background-color: #454E57;
+            border: 1px solid grey;
+        }
+        label input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+        }
+        label input:checked ~ .checkmark {
+          background-color: #2196F3;}
+
+
+        input[type='checkbox']:after {
+            content: "";
+            position: absolute;
+            display: none;
+            }
+        /*label input:checked ~ .checkmark:hover {
+          background-color: #2196D3;
+        }
+        label:hover input ~ .checkmark {
+            background-color: #ccc;
+        }*/
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        label input:checked ~ .checkmark:after {
+            display: block;
+        }
+        label .checkmark:after {
+            left: 4px;
+            top: 1px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+
+        }
+        p {
+          margin-bottom: 5px;
+          font-size: 14px;
+        }
+    </style>
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+    <form>
+
+        <fieldset>
+
+            <legend>
+
+                <h1>Let's talk</h1>
+                <p>Think you have what it takes? Show us.</p>
+                <br>
+                <br>
+                <h3>1. Personal information</h3>
+                <hr>
+
+            </legend>
+
+
+
+            <input id="fullname" type="text" name="fullname" placeholder="Full name*"  required  pattern="[A-Z][a-z]{2,13}[' ']{1}[A-Z][a-z]{2,13}"/>
+            <input style='width: 15%;' id='phone' type='text' name='phonenumber' placeholder='Phone#*' required  pattern="[' ',+, 0][0-9, ' ']{9,13}">
+             <br />
+            <input id="email" type="text" name="email" placeholder="Email*"  required  pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9]+\.[a-z]{2,3}"/> <br />
+
+            <input id="email" type="text" name="email" placeholder="Re-enter email*"  required  pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9]+\.[a-z]{2,3}"/> <br />
+            <br />
+
+
+
+            <input id="street1" type="text" name="streetaddress1" placeholder="Address*" required/><br />
+            <input id="street2" type="text" name="streetaddress2" /> <br />
+            <div id='little'>
+              <input id="city" class='little2' type="text" placeholder="City*" pattern ="[A-Z][a-z]{1-11}" required/>
+              <input id="state" class='little2' type="text" placeholder="State" pattern ="[A-Z][a-z]{1-11}" required/>
+              <input id="countryR" class='little2' type="text" placeholder="Country Region*" pattern ="[A-Za-z]{1-11}" required/>
+              <input id="zip" class='little2' type="text" placeholder="Zip/Postal code" pattern ="[0-9-]{4,7}" required/> <br /><br />
+            </div>
+            <input id='how' type="text" placeholder='How did you hear about us' required/>
+
+            <h3>2. Skills and location</h3>
+            <hr>
+            <p>Which is your primary design discipline?*</p>
+            <article>
+              <div id="disciplines">
+                <label><input id='radio1' type="radio" name="toggle"><span>Design Research</span></label>
+                <label><input id='radio2' type="radio" name="toggle"><span>Virtual Design</span></label>
+                <label><input id='radio3' type="radio" name="toggle"><span>UX Design</span></label>
+                <label><input id='radio4' type="radio" name="toggle"><span>Front-end Dev</span></label>
+              </div>
+              <div class='col'>
+                <div class='col2'>
+                  <p>Do you have experience with any other disciplines?</p> <br />
+                  <label class='check'>Virtual Design<input type="checkbox" value="VD"><span class='checkmark' /></label>
+                  <label class='check'>UX Design<input type="checkbox" value="UX"><span class='checkmark' /></label>
+                  <label class='check'>Front-end Development<input type="checkbox" value="FeD"><span class='checkmark' /></label> <br />
+                </div>
+                <div class='col2'>
+                  <p>Where are you interested in working?*
+                    <p class='gray'>You must be legally authorized to work without visa sponsorship in the location(s) you choose.</p>
+                  </p>
+                  <label class='check'><input type="checkbox" value="texas">Austin, Texas<span class='checkmark' /></label>
+                  <label class='check'><input type="checkbox" value="NY">New York, New York<span class='checkmark' /></label>
+                  <label class='check'><input type="checkbox" value="canada">Toronto, Canada<span class='checkmark' /></label>
+                  <label class='check'><input type="checkbox" value="china">Shanghai, China<span class='checkmark' /></label>
+                  <label class='check'><input type="checkbox" value="ireland">Dublin, Ireland<span class='checkmark' /></label>
+                  <label class='check'><input type="checkbox" value="UK">Hursley, United Kingdom<span class='checkmark' /></label>
+                  <label class='check'><input type="checkbox" value="germany">Boeblingen, Germany<span class='checkmark' /></label>
+                  <label class='check'><input type="checkbox" value="other">Somewhere else<span class='checkmark' /></label> <br />
+                </div>
+              </div>
+            </article>
+            <h3>3. Portfolio</h3>
+            <hr>
+            <p>Prove you're IBM's next great desogmer by showing us who you are. What you've done. How you think. Tell us your story.</p>
+            <br />
+
+            <input id="cv" type="link" required placeholder='Portfolio link*'> <br /><br />
+            <textarea rows="5" cols="50" required placeholder='Anything else (another link, availability, etc.)?'></textarea> <br /><br /><br />
+
+            <button type="submit">Submit</button>
+            </fieldset>
+
+    </form>
+
+
+
+</body>
+
+</html>
