@@ -28,6 +28,20 @@ h1 {text-align: center;}
 button {
     flex-basis: 10%;
 }
+.removal {
+      background-color: red;
+      margin: auto;
+      padding: 0 auto;
+      flex-grow: 0;
+      height: 20px;
+      flex-basis: 1.5em;
+}
+.removal:hover {
+      background-color: white;
+      color: black;
+      cursor: pointer;
+
+}
 #addb {background-color: green;
         color: white;
         width: 6em;
@@ -74,6 +88,7 @@ span {
   text-align: center;
 
 }
+
 main span {
   flex-basis: 24.5%;
   background-color: gray;
@@ -105,7 +120,7 @@ main div {
 @media (max-width: 1000px) {
 
     div {width: 94%;
-        margin: 3px 3%;}
+        margin: 3% 3px;}
 
 
 }
@@ -114,7 +129,7 @@ main div {
 
     div {width: 90%;
 
-        margin: 3px 4%;
+        margin: 4% 3px;
         flex-wrap: wrap;
       align-content: stretch;}
       #balance {

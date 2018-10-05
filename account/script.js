@@ -20,7 +20,7 @@ if (localStorage.getItem('data')!==null){
 // let placeholder = (field) => {
 //
 //   };
-function divCreateInc(a) {
+function divCreateInc(a, index) {
   let div = document.createElement('div');
             div.classList.add("incomes");
             inc.appendChild(div);
@@ -30,9 +30,16 @@ function divCreateInc(a) {
                 span.innerHTML = a[i];
                 div.appendChild(span);
               }
+              let span = document.createElement('span');
+              span.innerHTML = `X`;
+              span.classList=('removal');
+              span.onclick = function(){
+                if (confirm('Are you sure?') === true) {
+                dataArray.splice(index, 1); refresh();localStorage.setItem("data", JSON.stringify(dataArray));}}
+              div.appendChild(span);
             }
 
-function divCreateExp(a) {
+function divCreateExp(a, index) {
     let div = document.createElement('div');
               div.classList.add("expenditures");
               exp.appendChild(div);
@@ -42,6 +49,13 @@ function divCreateExp(a) {
                   span.innerHTML = a[i];
                   div.appendChild(span);
                 }
+                let span = document.createElement('span');
+                span.innerHTML = `X`;
+                span.classList=('removal');
+                span.onclick = function(){
+                  if (confirm('Are you sure?') === true) {
+                  dataArray.splice(index, 1); refresh();localStorage.setItem("data", JSON.stringify(dataArray));}}
+                div.appendChild(span);
               }
 let total = 0;
 let inc = document.getElementById('inc');
@@ -80,7 +94,7 @@ const refresh=()=>{
         if (dataArray[j][5]=== '0')
           {
             //console.log('inc: ' + dataArray[j][5]);
-            divCreateInc(dataArray[j]);
+            divCreateInc(dataArray[j], j);
             //console.log(dataArray[j]);
             let someData = dataArray[j][3].split(' ');
             //console.log(someData[1]);
@@ -89,7 +103,7 @@ const refresh=()=>{
         else if (dataArray[j][5] === '1')
           {
             //console.log('exp: ' + dataArray[j][5]);
-            divCreateExp(dataArray[j]);
+            divCreateExp(dataArray[j], j);
             let someData = dataArray[j][3].split(' ');
             //console.log(someData[1]);
             total -= parseInt(someData[0], 10);
@@ -150,4 +164,16 @@ const add = () => {
 
 
 }};
-  refresh();
+function eraseAll()
+      {
+      if (confirm('This will reset all data! Want to continue?') === true)
+        {
+        localStorage.clear();
+        dataArray=[];
+        refresh();
+        }
+      }
+
+
+
+refresh();
