@@ -11,13 +11,13 @@
     font-weight: 700;
     margin: 10px;  }
   .titleSpans {
-    background-image: linear-gradient(darkblue, darkred);
+    background-image: linear-gradient(gray, black);
     width: 100%;
     margin: 1 white solid;
     box-shadow: 1px 1px 1px black;
     }
   .titleSpans:hover {
-    background-image: linear-gradient(blue, darkred);
+    background-image: linear-gradient(lightgray, black);
 
   }
   a {
@@ -25,7 +25,11 @@
     text-decoration: none;
 
 
+
   }
+  .titleSpans {
+  cursor:pointer;}
+
   header {
     display: flex;
     flex-wrap: wrap;
@@ -44,8 +48,9 @@
   div {
 
     display: flex;
-    background-color: #1034cc;
+    background-color: gray;
     text-align: center;
+    border: 1px solid lightgray;
     width: 80%;
     border-radius: 5px;
     margin: 4px 10%;
@@ -57,7 +62,7 @@
   }
   span {
     flex-basis: 16.5%;
-    background-color: #5485ed;
+    background-color: black;
     margin: 3px;
     text-align: center;
 
@@ -86,7 +91,6 @@
   }
   span {
     flex-basis: 16.5%;
-    background-color: #5485ed;
     margin: 3px;
     text-align: center;
   }
@@ -115,7 +119,7 @@
 
       let json = new XMLHttpRequest();
       json.overrideMimeType("application/json");
-      json.open('GET', 'http://restcountries.eu/rest/v2/all', false); // Replace 'my_data' with the path to your file
+      json.open('GET', 'all.json', false); // Replace 'my_data' with the path to your file
       json.onreadystatechange = function () {
             if (json.readyState == 4 && json.status == "200") {
 
@@ -134,21 +138,26 @@
       });
 
   });
-   let title = ['Country', 'Capital', 'Population', 'Area', 'Language(s)', 'Flag'];
+   let title = ['Country', 'Capital', 'Citizens', 'Area', 'Language', 'Flag'];
    let nav = document.createElement('nav');
         document.body.appendChild(nav);
    let divT = document.createElement('div');
 
                divT.id="titleDiv";
-               divT.style.backgroundColor = 'darkred';
+               divT.style.backgroundColor = 'gray';
                nav.appendChild(divT);
              for (i=0; i<6; i++) {
              let span = document.createElement('span');
              span.classList = 'titleSpans';
-             span.setAttribute('onclick',`soort(${i})`);
-             span.innerHTML = title[i];
-             //`<a href='#' onclick='sort(${i});'>${title[i]}</a>`;
-             divT.appendChild(span);}
+             if (i>3)
+                  {
+                    span.innerHTML = title[i];
+                    divT.appendChild(span);
+                  }
+             else {
+               span.setAttribute('onclick',`soort(${i})`);
+               span.innerHTML = title[i] + ' &#8645';
+               divT.appendChild(span);}}
 
 
     let main = document.createElement("main");
@@ -275,6 +284,11 @@
     start();
 
 
+// function(a, b){
+//   if (a< b) return -1;if (a> b) return 1;return 0;
+//   if (a> b) return 1;
+//   return 0;}
+if ('bby' < 'bbz'){console.log(true)} else{console.log(false)};
 </script>
 </body>
 </html>
